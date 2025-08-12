@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "course_name": "Automation testing using python",
+    "endTime": 1753515000,
+    "language": "English",
+    "name": "PAT-C-WE-E-B14",
+    "startTime": 1753504200,
+    "students": 23,
+    "type": "WE"
+  },
+  {
+    "id": "2",
+    "course_name": "Digital marketing",
+    "endTime": 1753515000,
+    "language": "English",
+    "name": "DM-C-WE-E-B18",
+    "startTime": 1753504200,
+    "students": 20,
+    "type": "WE"
+  },
+  {
+    "id": "3",
+    "course_name": "Full stack development",
+    "endTime": 1753515000,
+    "language": "English",
+    "name": "FSD-C-WE-E-B32",
+    "startTime": 1753504200,
+    "students": 42,
+    "type": "WE"
+  },
+  {
+    "id": "4",
+    "course_name": "Devops",
+    "endTime": 1753515000,
+    "language": "English",
+    "name": "DO-C-WE-E-B23",
+    "startTime": 1753504200,
+    "students": 35,
+    "type": "WE"
+  },
+  {
+    "id": "5",
+    "course_name": "UI/UX",
+    "endTime": 1753515000,
+    "language": "English",
+    "name": "UIUX-C-WE-E-B34",
+    "startTime": 1753504200,
+    "students": 26,
+    "type": "WE"
+  },
+  {
+    "id": "6",
+    "course_name": "Full stack development",
+    "endTime": 1753198200,
+    "language": "Tamil",
+    "name": "FSD-C-WD-T-B31",
+    "startTime": 1753187400,
+    "students": 60,
+    "type": "WD"
+  }
+]
