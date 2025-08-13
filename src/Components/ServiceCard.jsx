@@ -26,7 +26,14 @@ function ServiceCard({ details }) {
             <Typography>{details.vechicle_type}</Typography>
             <Typography>{details.date_of_delivery}</Typography>
             <Typography>{details.service_amount}</Typography>
-            <Box>
+            <Box
+              sx={{
+                gap: "5px",
+              }}
+            >
+              <Button color="secondary" variant="contained">
+                VIEW
+              </Button>
               <Button color="secondary" variant="contained">
                 EDIT
               </Button>

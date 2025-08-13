@@ -27,7 +27,15 @@ function App() {
           path="/"
           element={<Services serviceDetails={serviceDetails} error={error} />}
         />
-        <Route path="/services/add" element={<AddServiceDetails />} />
+        <Route
+          path="/services/add"
+          element={
+            <AddServiceDetails
+              serviceDetails={serviceDetails}
+              setServiceDetails={setServiceDetails}
+            />
+          }
+        />
         <Route path="/services/edit/:id" element={<EditServiceDetails />} />
         <Route path="/services/:id" element={<ServiceDetails />} />
         <Route path="/nopage" element={<h1>No Page</h1>} />
