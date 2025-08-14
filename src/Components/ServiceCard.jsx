@@ -43,11 +43,11 @@ function ServiceCard({ details, serviceDetails, setServiceDetails }) {
           "&:hover": {
             // boxShadow: "10px 10px 150px red",
             transform: "scale(1.09)",
-            backgroundColor: "skyblue",
-            // width: "350px",
-            borderRadius: "10px",
-            marginLeft: "90px",
-            marginRight: "90px",
+            // backgroundColor: "skyblue",
+            // // width: "350px",
+            // borderRadius: "10px",
+            marginLeft: "30px",
+            marginRight: "30px",
 
             // color: "white",
           },
