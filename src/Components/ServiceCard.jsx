@@ -4,8 +4,30 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom";
+import { REST_HOST_NAME, SERVICE_ENDPOINT } from "../backend";
 
-function ServiceCard({ details }) {
+function ServiceCard({ details, serviceDetails, setServiceDetails }) {
+  const navigate = useNavigate();
+  async function deleteService(id) {
+    try {
+      let response = await fetch(
+        `${REST_HOST_NAME}/${SERVICE_ENDPOINT}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      let data = await response.json();
+      if (data) {
+        let deleteService = serviceDetails.filter(
+          (details) => details.id !== id
+        );
+        setServiceDetails([...deleteService]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <Box>
       <Paper
@@ -27,17 +49,27 @@ function ServiceCard({ details }) {
             <Typography>{details.date_of_delivery}</Typography>
             <Typography>{details.service_amount}</Typography>
             <Box
-              sx={{
-                gap: "5px",
-              }}
+              sx={{ display: "flex", gap: "0.5rem", justifyContent: "center" }}
             >
-              <Button color="secondary" variant="contained">
-                VIEW
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={() => navigate(`/services/${details.id}`)}
+              >
+                View
               </Button>
-              <Button color="secondary" variant="contained">
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={() => navigate(`/services/edit/${details.id}`)}
+              >
                 EDIT
               </Button>
-              <Button color="error" variant="contained">
+              <Button
+                color="error"
+                variant="contained"
+                onClick={() => deleteService(details.id)}
+              >
                 DELETE
               </Button>
             </Box>

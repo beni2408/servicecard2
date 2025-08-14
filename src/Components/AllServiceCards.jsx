@@ -1,10 +1,8 @@
 import React from "react";
 import ServiceCard from "./ServiceCard";
 import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
-const AllServiceCards = ({ serviceDetails }) => {
-  const navigate = useNavigate();
+const AllServiceCards = ({ serviceDetails, setServiceDetails }) => {
   return (
     <Box
       sx={{
@@ -16,9 +14,12 @@ const AllServiceCards = ({ serviceDetails }) => {
       }}
     >
       {serviceDetails?.map((details, idx) => (
-        <Box onClick={() => navigate(`/services/${details.id}`)} key={idx}>
-          <ServiceCard details={details} />
-        </Box>
+        <ServiceCard
+          details={details}
+          key={idx}
+          serviceDetails={serviceDetails}
+          setServiceDetails={setServiceDetails}
+        />
       ))}
     </Box>
   );
