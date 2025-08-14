@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { REST_HOST_NAME, SERVICE_ENDPOINT } from "../backend";
 
-// import { Typography } from "@mui/material";
-
 const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
   const { id } = useParams();
   const [details, setDetails] = useState({});
@@ -19,6 +17,7 @@ const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
   const [location, setLocation] = useState("");
   const [insurance_due_date, setInsurance_due_date] = useState();
   const navigate = useNavigate();
+
   useEffect(() => {
     fetch(`${REST_HOST_NAME}/${SERVICE_ENDPOINT}/${id}`, {
       method: "GET",
@@ -53,6 +52,7 @@ const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
       location,
       insurance_due_date,
     };
+
     let response = await fetch(`${REST_HOST_NAME}/${SERVICE_ENDPOINT}/${id}`, {
       method: "PUT",
       body: JSON.stringify(updatedService),
@@ -60,6 +60,7 @@ const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
         "Content-Type": "application/json",
       },
     });
+
     let data = await response.json();
     if (data) {
       const selectedServiceIndex = serviceDetails.findIndex(
@@ -70,6 +71,7 @@ const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
       navigate("/");
     }
   }
+
   return (
     <>
       {details && (
@@ -80,6 +82,20 @@ const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
             gap: "1rem",
             padding: "10px",
             width: "700px",
+            margin: "0 auto", // center the form
+
+            // Responsive widths
+            "@media (max-width: 600px)": {
+              width: "90%",
+              padding: "5px",
+            },
+            "@media (min-width: 601px) and (max-width: 1024px)": {
+              width: "80%",
+              padding: "8px",
+            },
+            "@media (min-width: 1025px)": {
+              width: "700px",
+            },
           }}
         >
           <Typography
@@ -90,226 +106,53 @@ const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
               fontSize: "40px",
               marginBottom: "20px",
               fontWeight: "Bold",
+
+              // Mobile title size
+              "@media (max-width: 600px)": {
+                fontSize: "28px",
+                marginTop: "50px",
+              },
             }}
           >
             Edit service details
           </Typography>
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
+
+          {[
+            [service_provider, setServiceName],
+            [vechicle_type, setVechicle_type],
+            [vechicle_number, setVechicle_number, "number"],
+            [date_of_service, setDate_of_service, "number"],
+            [date_of_delivery, setDate_of_delivery, "number"],
+            [service_details, setService_details],
+            [service_amount, setService_amount, "number"],
+            [contact, setContact, "number"],
+            [location, setLocation],
+            [insurance_due_date, setInsurance_due_date, "number"],
+          ].map(([value, setter, type], idx) => (
+            <TextField
+              key={idx}
+              sx={{
+                input: { color: "white" },
+                label: { color: "white" },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "white",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "white",
+                  },
                 },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            value={service_provider}
-            onChange={(e) => setServiceName(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            value={vechicle_type}
-            onChange={(e) => setVechicle_type(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            value={vechicle_number}
-            type="number"
-            onChange={(e) => setVechicle_number(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            value={date_of_service}
-            type="number"
-            onChange={(e) => setDate_of_service(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            type="number"
-            value={date_of_delivery}
-            onChange={(e) => setDate_of_delivery(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            value={service_details}
-            onChange={(e) => setService_details(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            type="number"
-            value={service_amount}
-            onChange={(e) => setService_amount(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            type="number"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-          <TextField
-            sx={{
-              input: { color: "white" }, // input text
-              label: { color: "white" }, // label text
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // hover border
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // focused border
-                },
-              },
-            }}
-            id="outlined-basic"
-            variant="outlined"
-            type="number"
-            value={insurance_due_date}
-            onChange={(e) => setInsurance_due_date(e.target.value)}
-          />
+              }}
+              variant="outlined"
+              value={value}
+              type={type || "text"}
+              onChange={(e) => setter(e.target.value)}
+            />
+          ))}
+
           <Button
             sx={{
               color: "black",
@@ -317,6 +160,12 @@ const EditServiceDetails = ({ serviceDetails, setServiceDetails }) => {
               fontWeight: "bold",
               fontFamily: "monospace",
               marginBottom: "150px",
+
+              // Button responsive
+              "@media (max-width: 600px)": {
+                fontSize: "14px",
+                padding: "8px 12px",
+              },
             }}
             onClick={updateNewService}
           >

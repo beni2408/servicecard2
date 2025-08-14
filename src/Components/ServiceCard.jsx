@@ -46,8 +46,13 @@ function ServiceCard({ details, serviceDetails, setServiceDetails }) {
             // backgroundColor: "skyblue",
             // // width: "350px",
             // borderRadius: "10px",
-            marginLeft: "30px",
-            marginRight: "30px",
+            marginLeft: "10px",
+            marginRight: "10px",
+
+            // display: "flex",
+            // flexDirection: "column",
+            // justifyContent: "space-around",
+            // alignItems: "center",
 
             // color: "white",
           },
@@ -55,12 +60,22 @@ function ServiceCard({ details, serviceDetails, setServiceDetails }) {
       >
         <Stack spacing={4}>
           <Paper elevation={2}>
-            <Typography>{details.service_provider}</Typography>
-            <Typography>{details.location}</Typography>
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                marginBottom: "10px",
+              }}
+            >
+              {details.service_provider}
+            </Typography>
+            <Typography> {details.location}</Typography>
           </Paper>
           <Box>
-            <Typography>{details.vechicle_type}</Typography>
-            <Typography>{details.date_of_delivery}</Typography>
+            <Typography> Vehicle Type: {details.vechicle_type}</Typography>
+            <Typography>
+              {" "}
+              Date of delivery: {details.date_of_delivery}
+            </Typography>
             <Typography>{details.service_amount}</Typography>
             <Box
               sx={{ display: "flex", gap: "0.5rem", justifyContent: "center" }}

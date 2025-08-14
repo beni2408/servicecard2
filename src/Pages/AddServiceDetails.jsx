@@ -298,7 +298,7 @@ const AddServiceDetails = ({ serviceDetails, setServiceDetails }) => {
       />
       <Button
         sx={{
-          marginTop: "50px",
+          marginTop: "10px",
           color: "white",
           background: "red",
           fontWeight: "bold",

@@ -6,17 +6,21 @@ import Services from "./Pages/Services";
 import ServiceDetails from "./Pages/ServiceDetails";
 import AddServiceDetails from "./Pages/AddServiceDetails";
 import EditServiceDetails from "./Pages/EditServiceDetails";
+import { getAllServices } from "./Handlers/apihandlers/";
 
 function App() {
   const [serviceDetails, setServiceDetails] = useState([]);
   const [error, setError] = useState("");
   useEffect(() => {
-    fetch(`${REST_HOST_NAME}/${SERVICE_ENDPOINT}`, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((serviceData) => setServiceDetails(serviceData))
-      .catch((err) => setError(err));
+    getAllServices()
+      .then((data) => {
+        if (data) {
+          setServiceDetails(data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
