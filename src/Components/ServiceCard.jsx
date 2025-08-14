@@ -37,6 +37,20 @@ function ServiceCard({ details, serviceDetails, setServiceDetails }) {
           height: "200px",
           width: "300px",
           padding: "20px",
+          borderRadius: "6px",
+          // boxShadow: "10px 10px 100px white",
+          transition: "all 0.5s ease",
+          "&:hover": {
+            // boxShadow: "10px 10px 150px red",
+            transform: "scale(1.09)",
+            backgroundColor: "skyblue",
+            // width: "350px",
+            borderRadius: "10px",
+            marginLeft: "90px",
+            marginRight: "90px",
+
+            // color: "white",
+          },
         }}
       >
         <Stack spacing={4}>

@@ -6,7 +6,24 @@ const Services = ({ serviceDetails, setServiceDetails }) => {
   const navigate = useNavigate();
   return (
     <div>
-      <Button onClick={() => navigate("services/add")}>Add New Service</Button>
+      <Button
+        sx={{
+          marginTop: "50px",
+          color: "white",
+          background: "red",
+          fontWeight: "bold",
+          fontFamily: "monospace",
+          marginBottom: "50px",
+          transition: "all 0.5s ease",
+          "&:hover": {
+            boxShadow: "10px 10px 0px whitesmoke",
+            transform: "scale(1.09)",
+          },
+        }}
+        onClick={() => navigate("services/add")}
+      >
+        Add New Service +
+      </Button>
       <AllServiceCards
         serviceDetails={serviceDetails}
         setServiceDetails={setServiceDetails}
